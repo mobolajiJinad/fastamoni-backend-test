@@ -8,7 +8,7 @@ Build a service in Node.js that can be deployed to AWS which exposes an API and 
 
 This service should
 
-
+- Deployed on https://render.com
 - Allow user create an account with basic user information
 - Allow a user login
 - Allow a user have a wallet
