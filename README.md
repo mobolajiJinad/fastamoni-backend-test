@@ -18,12 +18,6 @@ This service should
 - Allow a user view all donation made in a given period of time.
 - Allow a user view a single donation made to a beneficiary
 
-
-1. [Documentation](#documentation)
-2. [Implement Pagination](#implement-pagination)
-3. [Security](#security)
-4. [Load Testing](#load-testing)
-
 ### Documentation
 
 Please deliver documentation of the server that clearly explains the goals of this project and clarifies the API response that is expected.
