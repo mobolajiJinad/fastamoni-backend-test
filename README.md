@@ -1,14 +1,14 @@
 # Fastamoni Inc Coding Exercise
 
-The goal of these exercises are to assess your proficiency in software engineering that is related to the daily work that we do at Fastamoni. Please follow the instructions below to complete the assessment.
+The goal of this task is to assess your proficiency in software engineering that is related to the daily work that we do at Fastamoni. Please follow the instructions below to complete the assessment.
 
 ## Tasks
 
-Build a service in Node.js that can be deployed to AWS which exposes an API and can be consumed from any client.
+Build a web service using Node.js that can be deployed to AWS, exposes an API and can be consumed from any client.
 
 This service should
 
-- Deployed on https://render.com
+- Be deployed on https://render.com
 - Allow user create an account with basic user information
 - Allow a user login
 - Allow a user have a wallet
