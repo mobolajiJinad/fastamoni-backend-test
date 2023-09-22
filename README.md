@@ -13,10 +13,11 @@ This service should
 - Allow a user login
 - Allow a user have a wallet
 - Allow a user create a transaction PIN
-- Allow a user create a donation to beneficiary
-- Allow a user check how many donations he/she has made and send them a special thank you message, if they make 2 or more donations.
+- Allow a user create a donation to a fellow user (beneficiary)
+- Allow a user check how many donations he/she has made
+- Have ability to a special thank you message via email or sms or any communication channel, if they make two(2) or more donations.
 - Allow a user view all donation made in a given period of time.
-- Allow a user view a single donation made to a beneficiary
+- Allow a user view a single donation made to a fellow user (beneficiary)
 
 ### Documentation
 
