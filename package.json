@@ -1,0 +1,30 @@
+{
+  "name": "backend-test",
+  "version": "1.0.0",
+  "description": "Fastamoni backend interview test",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobolajiJinad/backend-test.git"
+  },
+  "author": "Abdulquadri Jinad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mobolajiJinad/backend-test/issues"
+  },
+  "homepage": "https://github.com/mobolajiJinad/backend-test#readme",
+  "dependencies": {
+    "backend-test": "file:",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.4",
+    "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.4"
+  }
+}
