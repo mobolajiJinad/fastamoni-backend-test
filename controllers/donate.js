@@ -4,6 +4,7 @@ const { StatusCodes } = require("http-status-codes");
 const User = require("../models/User");
 const Donation = require("../models/Donation");
 const Wallet = require("../models/Wallet");
+const { sendThankYouMessage } = require("../utils");
 
 const createDonationController = async (req, res) => {
   const { beneficiaryUsername, amount, walletPin } = req.body;
@@ -35,6 +36,7 @@ const createDonationController = async (req, res) => {
     walletPin,
     donorWallet.walletPin
   );
+
   if (!isWalletPinCorrect) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -66,6 +68,11 @@ const createDonationController = async (req, res) => {
 
   beneficiaryWallet.balance += Intamount;
   await beneficiaryWallet.save();
+
+  const donations = await Donation.find({ donor: donor._id });
+  if (donations.length >= 2) {
+    await sendThankYouMessage(donor);
+  }
 
   res
     .status(StatusCodes.CREATED)
