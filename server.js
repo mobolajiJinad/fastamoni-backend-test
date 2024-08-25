@@ -2,16 +2,15 @@ require("dotenv").config({ path: "./.env" });
 
 const express = require("express");
 const mongoose = require("mongoose");
-const { StatusCodes } = require("http-status-codes");
+
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
-  return res.status(StatusCodes.CREATED).json({ message: "Successful" });
-});
+app.use("/api/v1/auth", authRoutes);
 
 const PORT = process.env.PORT || 3000;
 
