@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const authRoutes = require("./routes/auth");
-const testAuthorizeRoutes = require("./routes/testAuthorize");
+const walletRoutes = require("./routes/wallet");
 const authorize = require("./middleware/authorize");
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/testAuthorization", authorize, testAuthorizeRoutes);
+app.use("/api/v1/wallet", authorize, walletRoutes);
 
 const PORT = process.env.PORT || 3000;
 

@@ -17,7 +17,7 @@ const signupController = async (req, res) => {
 
   await user.save();
 
-  res.status(StatusCodes.CREATED).json({ username });
+  res.status(StatusCodes.CREATED).json({ user });
 };
 
 const loginController = async (req, res) => {
@@ -58,7 +58,7 @@ const loginController = async (req, res) => {
     process.env.JWT_SECRET
   );
 
-  res.status(StatusCodes.OK).json({ username: user.username, token });
+  res.status(StatusCodes.OK).json({ user, token });
 };
 
 module.exports = {

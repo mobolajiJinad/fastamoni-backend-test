@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
       "Make sure password is between 7 to 15 characters and contains at least one numeric digit and a special character",
     ],
   },
+  wallet: { type: mongoose.Schema.Types.ObjectId, ref: "Wallet" },
 });
 
 userSchema.pre("save", async function () {
