@@ -11,18 +11,6 @@ const viewAllDonationsController = async (req, res) => {
   res.status(StatusCodes.OK).json(donations);
 };
 
-const viewSingleDonationController = async (req, res) => {
-  const donation = await Donation.findById(req.params.donationID);
-
-  if (!donation || donation.donor.toString() !== req.user.userID) {
-    return res
-      .status(StatusCodes.NOT_FOUND)
-      .json({ error: "Donation not found" });
-  }
-
-  res.status(StatusCodes.OK).json(donation);
-};
-
 const viewDonationsWithinPeriodController = async (req, res) => {
   const { startDate, endDate, page = 1, limit = 10 } = req.query;
 
@@ -41,6 +29,5 @@ const viewDonationsWithinPeriodController = async (req, res) => {
 
 module.exports = {
   viewAllDonationsController,
-  viewSingleDonationController,
   viewDonationsWithinPeriodController,
 };

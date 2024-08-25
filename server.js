@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const walletRoutes = require("./routes/wallet");
 const donateRoutes = require("./routes/donate");
-const donationRoutes = require("./routes/donations");
+const donationRoutes = require("./routes/donation");
+const donationsRoutes = require("./routes/donations");
 const authorize = require("./middleware/authorize");
 
 const app = express();
@@ -17,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/wallet", authorize, walletRoutes);
 app.use("/api/v1/donate", authorize, donateRoutes);
-app.use("/api/v1/donations", authorize, donationRoutes);
+app.use("/api/v1/donation", authorize, donationRoutes);
+app.use("/api/v1/donations", authorize, donationsRoutes);
 
 const PORT = process.env.PORT || 3000;
 
