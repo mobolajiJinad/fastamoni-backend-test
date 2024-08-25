@@ -2,6 +2,8 @@ require("dotenv").config({ path: "./.env" });
 
 const express = require("express");
 const mongoose = require("mongoose");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 
 const authRoutes = require("./routes/auth");
 const walletRoutes = require("./routes/wallet");
@@ -14,6 +16,10 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
+app.use(limiter);
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/wallet", authorize, walletRoutes);
