@@ -1,45 +1,79 @@
-# Fastamoni Inc Coding Exercise
+# **Backend Node.js Developer Task Submission - Abdulquadri Omobolaji Jinad**
 
-The goal of this task is to assess your proficiency in software engineering that is related to the daily work that we do at Fastamoni. Please follow the instructions below to complete the assessment.
+## **1. Project Overview**
 
-## Tasks
+This document provides an overview of the project I have developed to meet the requirements for the Backend Node.js Developer position. The goal was to create a web service that includes user authentication, wallet management, and donation tracking, with an emphasis on security, performance, and best practices.
 
-Build a web service using Node.js that can be deployed to AWS, exposes an API and can be consumed from any client.
+## **2. Implementation Plan**
 
-This service should
+### **2.1 Project Setup**
 
-- Be deployed on https://render.com
-- Allow user create an account with basic user information
-- Allow a user login
-- Allow a user have a wallet
-- Allow a user create a transaction PIN
-- Allow a user create a donation to a fellow user (beneficiary)
-- Allow a user check how many donations he/she has made
-- Have ability to a special thank you message via email or sms or any communication channel, if they make two(2) or more donations.
-- Allow a user view all donation made in a given period of time.
-- Allow a user view a single donation made to a fellow user (beneficiary)
+- **Initialized the Node.js project** using npm.
+- **Connected to MongoDB** with Mongoose for database operations.
+- **Configured environment variables** using dotenv.
+- **Installed essential packages**:
+  - `express` for setting up the server.
+  - `mongoose` for interacting with MongoDB.
+  - `bcrypt` for hashing passwords.
+  - `jsonwebtoken` for JWT-based authentication.
+  - `nodemailer` for sending email notifications.
+  - `artillery` for conducting load testing.
+  - `express-rate-limit` for implementing rate limiting to enhance security.
 
-### Documentation
+### **2.2 Database Design**
 
-Please deliver documentation of the server that clearly explains the goals of this project and clarifies the API response that is expected.
+- **User Schema**: Manages user credentials, wallet association, and transaction PIN.
+- **Wallet Schema**: Handles wallet balance and links to the user.
+- **Donation Schema**: Records details about donations, including donor, beneficiary, amount, and date.
 
-### Implement Pagination
+### **2.3 Security Measures**
 
-Please implement pagination to retrieve pages of the resource.
+- **Input Validation**: Used `express-validator` for validating and sanitizing inputs.
+- **Authentication**: Implemented JWT for secure user authentication.
+- **Rate Limiting**: Added `express-rate-limit` to prevent brute-force attacks.
+- **Database Security**: Used Mongoose to prevent MongoDB injection attacks.
 
-### Security
+### **2.4 API Endpoints**
 
-Please implement the following security controls for your system:
+- **Authentication**:
+  - Register a new user: `POST /register`
+  - Log in a user: `POST /login`
+- **Wallet Management**:
+  - Create a wallet: `POST /wallet`
+- **Donation Management**:
+  - Make a donation: `POST /donate`
+  - View all donations: `GET /donations?page=1&limit=10`
+  - View donations within a specific period: `GET /donations/period?startDate=yyyy-mm-dd&endDate=yyyy-mm-dd&page=1&limit=10`
+  - View a specific donation: `GET /donation/:id`
+- **Automatic Thank You Message**: Sent after two or more donations.
 
-1. Ensure the system is not vulnerable to [SQL injection](https://www.owasp.org/index.php/SQL_Injection)
-2. **[BONUS]** Implement an additional security improvement of your choice
+### **2.5 Pagination**
 
-### Load Testing
+- Implemented pagination for donation endpoints using `page` and `limit` query parameters.
 
-Please implement load testing to ensure your service can handle a high amount of traffic
+### **2.6 API Documentation**
 
-#### Success Criteria
+- Documented the API using Swagger, providing examples for each request and response.
 
-1. Implement load testing using `artillery`
-2. Ensure that load testing is able to be run using `npm test:load`. You can consider using a tool like `forever` to spin up a daemon and kill it after the load test has completed.
-3. Test all endpoints under at least `100 rps` for `30s` and ensure that `p99` is under `50ms`
+### **2.7 Load Testing**
+
+- **Load tests** were written using `artillery`, targeting 100 requests per second for 30 seconds.
+- Ensured p99 response time under 50ms.
+
+### **2.8 Deployment**
+
+- Deployed the service on Render.com with proper environment variable configurations.
+
+## **3. GitHub Repository**
+
+The complete source code for this project can be accessed on GitHub:  
+[GitHub Repository Link](https://github.com/mobolajiJinad/fastamoni-backend-test)
+
+## **4. Suggestions for Future Enhancements**
+
+- **Unit Tests**: Consider implementing unit tests using Jest for all endpoints.
+- **Advanced Error Handling**: Add more sophisticated error handling mechanisms for better security and user experience.
+
+## **5. Conclusion**
+
+This project demonstrates my ability to build a back-end Node.js application with a focus on security, scalability, and performance. I look forward to discussing this further in the final interview.
