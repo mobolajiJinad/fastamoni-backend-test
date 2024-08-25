@@ -1,4 +1,5 @@
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { StatusCodes } = require("http-status-codes");
 
 const User = require("../models/User");
@@ -52,7 +53,12 @@ const loginController = async (req, res) => {
       .json({ error: "Invalid credentials" });
   }
 
-  res.status(StatusCodes.OK).json({ username: user.username });
+  const token = jwt.sign(
+    { userID: user._id, username: user.username },
+    process.env.JWT_SECRET
+  );
+
+  res.status(StatusCodes.OK).json({ username: user.username, token });
 };
 
 module.exports = {
