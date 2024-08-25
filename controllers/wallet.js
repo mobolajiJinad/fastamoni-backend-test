@@ -5,16 +5,23 @@ const Wallet = require("../models/Wallet");
 const User = require("../models/User");
 
 const walletController = async (req, res) => {
-  const { transactionPin } = req.body;
-  const hashedPin = await bcryptjs.hash(transactionPin, 10);
+  const existingWallet = await Wallet.findOne({ user: req.user.userID });
+
+  if (existingWallet) {
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "User already has a wallet", wallet: existingWallet });
+  }
+
+  const { walletPin } = req.body;
 
   const wallet = new Wallet({
     user: req.user.userID,
-    transactionPin: hashedPin,
+    walletPin,
   });
   await wallet.save();
 
-  const user = await User.findByIdAndUpdate(req.user.userID, {
+  await User.findByIdAndUpdate(req.user.userID, {
     wallet: wallet._id,
   });
 
