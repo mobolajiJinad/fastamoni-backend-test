@@ -16,7 +16,13 @@ const sendThankYouMessage = async (user) => {
     text: "We appreciate your generosity!",
   };
 
-  await transporter.sendMail(mailOptions);
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(`Error: ${error}`);
+    } else {
+      console.log(`Email sent: ${info.response}`);
+    }
+  });
 };
 
 const notFoundHandler = (req, res) => {

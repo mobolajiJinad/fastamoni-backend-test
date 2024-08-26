@@ -76,8 +76,7 @@ const createDonationController = async (req, res) => {
 
     const donationCount = await Donation.countDocuments({ donor: donor._id });
     if (donationCount >= 2) {
-      // await sendThankYouMessage(donor);
-      console.log("send you thank you message");
+      await sendThankYouMessage(donor);
     }
 
     res
