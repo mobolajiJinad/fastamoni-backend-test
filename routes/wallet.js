@@ -4,6 +4,6 @@ const { walletController } = require("../controllers/wallet");
 
 const router = express.Router();
 
-router.route("/").post(walletController);
+router.post("/", walletController);
 
 module.exports = router;

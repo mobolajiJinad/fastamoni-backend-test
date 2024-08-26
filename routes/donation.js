@@ -4,6 +4,6 @@ const { viewDonationController } = require("../controllers/donation");
 
 const router = express.Router();
 
-router.route("/:donationID").get(viewDonationController);
+router.get("/:donationID", viewDonationController);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const {
 
 const router = express.Router();
 
-router.route("/").get(viewAllDonationsController);
-router.route("/period").get(viewDonationsWithinPeriodController);
+router.get("/", viewAllDonationsController);
+router.get("/period", viewDonationsWithinPeriodController);
 
 module.exports = router;
