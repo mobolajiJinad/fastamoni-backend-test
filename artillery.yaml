@@ -1,0 +1,72 @@
+config:
+  target: "http://localhost:3000" # Replace with your server URL if different
+  phases:
+    - duration: 30 # Duration of the test in seconds
+      arrivalRate: 100 # Number of requests per second (rps)
+      rampTo: 100 # Ramp up to this many requests per second
+  defaults:
+    headers:
+      Content-Type: "application/json" # Default header for all requests
+  ensure:
+    max_response_time: 50 # Ensure p99 is under 50ms
+scenarios:
+  - name: "User Sign-Up"
+    flow:
+      - post:
+          url: "/api/v1/auth/signup"
+          json:
+            username: "testuser"
+            email: "testuser@example.com"
+            password: "Password123!"
+
+  - name: "User Login"
+    flow:
+      - post:
+          url: "/api/v1/auth/login"
+          json:
+            usernameOrEmail: "testuser@example.com"
+            password: "Password123!"
+
+  - name: "Create Wallet"
+    flow:
+      - post:
+          url: "/api/v1/wallet"
+          beforeRequest: login_before_request
+          json:
+            walletPin: "1234"
+
+  - name: "Make a Donation"
+    flow:
+      - post:
+          url: "/api/v1/donate"
+          beforeRequest: login_before_request
+          json:
+            beneficiaryUsername: "beneficiaryuser"
+            amount: 1000
+            walletPin: "1234"
+
+  - name: "View Donation"
+    flow:
+      - get:
+          url: "/api/v1/donation/{{ donationID }}"
+          beforeRequest: login_before_request
+
+  - name: "View All Donations"
+    flow:
+      - get:
+          url: "/api/v1/donations"
+          beforeRequest: login_before_request
+
+hooks:
+  beforeRequest:
+    login_before_request:
+      post:
+        url: "/api/v1/auth/login"
+        json:
+          usernameOrEmail: "testuser@example.com"
+          password: "Password123!"
+      capture:
+        - json: "$.token"
+          as: "authToken"
+      setHeaders:
+        Authorization: "Bearer {{ authToken }}"
